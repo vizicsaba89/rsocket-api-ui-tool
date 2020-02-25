@@ -11,10 +11,18 @@
 </head>
 <body class="grey darken-3">
 
-  <div class="container">
+  <div class="">
     <app-root></app-root>
   </div>
 
-  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js">
+  </script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, {});
+    });
+  </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+import { InputBarModule } from './../input-bar/inpu-bar.module'
 import { SocketUIService } from './services/socket-ui.service'
 import { SocketUIComponent } from './components/socket-ui.component'
 import { CommonModule } from '@angular/common'
@@ -7,7 +8,7 @@ import {PrettyJsonModule} from 'angular2-prettyjson'
 
 @NgModule({
   declarations: [ SocketUIComponent ],
-  imports: [CommonModule, HttpClientModule, PrettyJsonModule],
+  imports: [CommonModule, HttpClientModule, PrettyJsonModule, InputBarModule],
   providers: [
     SocketUIService
   ]
