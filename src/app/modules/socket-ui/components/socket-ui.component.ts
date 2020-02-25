@@ -1,5 +1,5 @@
 import { SocketUIService } from './../services/socket-ui.service'
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'socket-ui',
@@ -75,4 +75,5 @@ export class SocketUIComponent implements OnInit {
   handleChange(event) {
     this.result = event
   }
+
 }

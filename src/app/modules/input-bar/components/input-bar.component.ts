@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 @Component({
   selector: 'input-bar',
   template: `
-    <div class="row">
+    <div style="margin: 10px;" class="row card-panel blue-grey darken-4 z-depth-1">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="input-field col s2">
           <select formControlName="interactionModel">
