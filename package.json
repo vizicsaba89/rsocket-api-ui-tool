@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
+    "@ngstack/code-editor": "^0.4.8",
     "rsocket-core": "^0.0.10",
     "rsocket-flowable": "^0.0.10",
     "rsocket-tcp-server": "^0.0.10",

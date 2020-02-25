@@ -1,4 +1,3 @@
-import { element } from 'protractor'
 import { SocketUIService } from './../services/socket-ui.service'
 import { Component, OnInit } from '@angular/core';
 
@@ -7,26 +6,24 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <input-bar (result)="handleChange($event)"></input-bar>
     <div class="row">
-      <div class="col s2">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <p>history</p>
-          </div>
-        </div>
+      <div class="col s5">
+      <ngs-code-editor
+        [theme]="theme"
+        [codeModel]="payloadModel"
+        [options]="options"
+        style="height: 500px;"
+        (valueChanged)="onCodeChanged($event)"
+      >
+      </ngs-code-editor>
       </div>
       <div class="col s5">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <p>payload</p>
-          </div>
-        </div>
-      </div>
-      <div class="col s5">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <pre><code>{{ result | json }}</code></pre>
-          </div>
-        </div>
+      <ngs-code-editor
+        [theme]="theme"
+        [codeModel]="resultModel"
+        [options]="options"
+        style="height: 500px;"
+      >
+      </ngs-code-editor>
       </div>
     </div>
   `,
@@ -34,15 +31,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SocketUIComponent implements OnInit {
 
-  result: any[] = []
+  result = `{"menu": {
+    "id": "file",
+    "value": "File",
+    "popup": {
+      "menuitem": [
+        {"value": "New", "onclick": "CreateNewDoc()"},
+        {"value": "Open", "onclick": "OpenDoc()"},
+        {"value": "Close", "onclick": "CloseDoc()"}
+      ]
+    }
+  }}`
+
+  theme = 'vs-dark'
+
+  payloadModel = {
+    language: 'json',
+    value: '{}'
+  }
+
+  resultModel = {
+    language: 'json',
+    readOnly: true,
+    value: this.result
+  }
+
+  options = {
+    contextmenu: false,
+    minimap: {
+      enabled: true
+    }
+  }
 
   constructor(private socketUIService: SocketUIService) {}
 
   async ngOnInit(): Promise<void> {
   }
 
+  onCodeChanged(value) {
+    console.log('CODE', value)
+  }
+
   handleChange(event) {
-    console.log(event)
     this.result = event
   }
 }

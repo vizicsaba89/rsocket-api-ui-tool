@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CodeEditorModule } from '@ngstack/code-editor'
 
 const routes: Routes = [
   { path: '', component: SocketUIComponent }
@@ -18,6 +19,7 @@ const routes: Routes = [
     AppRoutingModule,
     SocketUIModule,
     RouterModule.forChild(routes),
+    CodeEditorModule.forRoot(),
 
   ],
   providers: [],
