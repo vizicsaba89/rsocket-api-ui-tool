@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AceEditorModule } from 'ng2-ace-editor'
+import { FormsModule } from '@angular/forms'
 
 const routes: Routes = [
   { path: '', component: SocketUIComponent }
@@ -18,7 +20,8 @@ const routes: Routes = [
     AppRoutingModule,
     SocketUIModule,
     RouterModule.forChild(routes),
-
+    FormsModule,
+    AceEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
