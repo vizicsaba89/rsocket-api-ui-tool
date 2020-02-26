@@ -1,12 +1,20 @@
 import { SocketUIService } from './../services/socket-ui.service'
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'socket-ui',
   template: `
     <input-bar (result)="handleChange($event)"></input-bar>
     <div class="row">
-      <div class="col s5">
+      <div class="col s6">
+        Payload
+      </div>
+      <div class="col s6">
+        Result
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6">
       <ngs-code-editor
         [theme]="theme"
         [codeModel]="payloadModel"
@@ -16,14 +24,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
       >
       </ngs-code-editor>
       </div>
-      <div class="col s5">
-      <ngs-code-editor
-        [theme]="theme"
-        [codeModel]="resultModel"
-        [options]="options"
-        style="height: 500px;"
-      >
-      </ngs-code-editor>
+      <div class="col s6 grey darken-4" style="height: 500px; overflow-y: scroll;">
+          <pre class="white-text" style="font-size: 10px;">{{ result | json }}</pre>
       </div>
     </div>
   `,
@@ -31,17 +33,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class SocketUIComponent implements OnInit {
 
-  result = `{"menu": {
-    "id": "file",
-    "value": "File",
-    "popup": {
-      "menuitem": [
-        {"value": "New", "onclick": "CreateNewDoc()"},
-        {"value": "Open", "onclick": "OpenDoc()"},
-        {"value": "Close", "onclick": "CloseDoc()"}
-      ]
-    }
-  }}`
+  result: any = undefined
 
   theme = 'vs-dark'
 
@@ -52,12 +44,12 @@ export class SocketUIComponent implements OnInit {
 
   resultModel = {
     language: 'json',
-    readOnly: true,
     value: this.result
   }
 
   options = {
     contextmenu: false,
+    fontSize: 10,
     minimap: {
       enabled: true
     }

@@ -1,4 +1,3 @@
-import { AceEditorModule } from 'ng2-ace-editor'
 import { InputBarModule } from './../input-bar/inpu-bar.module'
 import { SocketUIService } from './services/socket-ui.service'
 import { SocketUIComponent } from './components/socket-ui.component'

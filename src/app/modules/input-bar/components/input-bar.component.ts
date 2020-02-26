@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 @Component({
   selector: 'input-bar',
   template: `
-    <div style="margin: 10px;" class="row card-panel blue-grey darken-4 z-depth-1">
+    <div style="margin: 10px;" class="row card-panel grey darken-4 z-depth-1">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="input-field col s2">
           <select formControlName="interactionModel">
@@ -18,11 +18,11 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
           <label>Interaction Models</label>
         </div>
         <div class="input-field col s4">
-          <input formControlName="wsBaseUrl" placeholder="websocket base url" type="text" class="validate">
+          <input formControlName="wsBaseUrl" placeholder="" type="text" class="validate white-text">
           <label for="wsBaseUrl">Websocket URL</label>
         </div>
         <div class="input-field col s4">
-          <input formControlName="destinationUrl" placeholder="websocket destination" type="text" class="validate">
+          <input formControlName="destinationUrl" placeholder="" type="text" class="validate white-text">
           <label for="destinationUrl">Destination</label>
         </div>
         <div class="input-field col s2">
@@ -37,8 +37,8 @@ export class InputBarComponent implements OnInit {
 
   form: FormGroup
 
-  wsBaseUrl = new FormControl("", Validators.required)
-  destinationUrl=  new FormControl("", Validators.required)
+  wsBaseUrl = new FormControl("ws://localhost/rsocket", Validators.required)
+  destinationUrl=  new FormControl("working.time.abc-1234.2020-01-31T23:59:59.2020-02-31T23:59:59", Validators.required)
   interactionModel =  new FormControl("", Validators.required)
 
   @Output()
@@ -71,7 +71,7 @@ export class InputBarComponent implements OnInit {
       },
       onError: error => {
         console.log(error);
-        this.elements = []
+        this.elements.push(error)
       },
       onNext: payload => {
         this.elements.push(payload.data)
