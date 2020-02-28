@@ -10,10 +10,10 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
         <div class="input-field col s2">
           <select formControlName="interactionModel">
             <option value="" disabled selected>Choose interaction model</option>
-            <option value="1">Request-Response</option>
-            <option value="2">Request-Stream</option>
-            <option value="3">Channel</option>
-            <option value="4">Fire-and-Forget</option>
+            <option value="Request-Response">Request-Response</option>
+            <option value="Request-Stream">Request-Stream</option>
+            <option value="Channel">Channel</option>
+            <option value="Fire-and-Forget">Fire-and-Forget</option>
           </select>
           <label>Interaction Models</label>
         </div>
@@ -21,11 +21,11 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
           <input formControlName="wsBaseUrl" placeholder="" type="text" class="validate white-text">
           <label for="wsBaseUrl">Websocket URL</label>
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col s5">
           <input formControlName="destinationUrl" placeholder="" type="text" class="validate white-text">
           <label for="destinationUrl">Destination</label>
         </div>
-        <div class="input-field col s2">
+        <div class="input-field col s1">
           <button type=submit class="waves-effect waves-light btn">send</button>
         </div>
       </form>
@@ -47,7 +47,7 @@ export class InputBarComponent implements OnInit {
   elements: any[] = []
 
   constructor(private fb: FormBuilder, private socketUIService: SocketUIService) {
-    this.form = fb.group({
+    this.form = this.fb.group({
       "wsBaseUrl": this.wsBaseUrl,
       "destinationUrl": this.destinationUrl,
       "interactionModel": this.interactionModel,
@@ -63,6 +63,8 @@ export class InputBarComponent implements OnInit {
       interactionModel: this.form.value.interactionModel,
       payload: undefined, 
       wsBaseUrl: this.form.value.wsBaseUrl
+    }).catch(error => {
+      this.result.emit(error)
     })
 
     response.subscribe({

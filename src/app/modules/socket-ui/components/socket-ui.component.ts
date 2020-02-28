@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
     <input-bar (result)="handleChange($event)"></input-bar>
     <div class="row">
       <div class="col s6">
-        Payload
+        <p class="white-text">Payload</p>
       </div>
       <div class="col s6">
-        Result
+        <p class="white-text">Result</p>
       </div>
     </div>
     <div class="row">

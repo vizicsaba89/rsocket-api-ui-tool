@@ -3,6 +3,7 @@ import { ReactiveSocket, Encodable } from 'rsocket-types'
 import RSocketWebSocketClient from 'rsocket-websocket-client'
 import { RSocketClient, JsonSerializer, IdentitySerializer } from 'rsocket-core'
 import { Injectable } from "@angular/core";
+import { Flowable } from 'rsocket-flowable';
 
 @Injectable()
 export class SocketUIService {
@@ -11,11 +12,28 @@ export class SocketUIService {
 
   async getSocketResponse(socketRequest: SocketRequest): Promise<any> {
     const socket = await this.getSocketBase(socketRequest.wsBaseUrl)
-
-    return socket.requestStream({
-      data: socketRequest.payload,
-      metadata: String.fromCharCode(`${socketRequest.destinationUrl}`.length) + `${socketRequest.destinationUrl}`
-    })
+    console.log(socketRequest.interactionModel)
+    switch(socketRequest.interactionModel) {
+      case 'Request-Response' :
+        return socket.requestResponse({
+          data: socketRequest.payload,
+          metadata: String.fromCharCode(`${socketRequest.destinationUrl}`.length) + `${socketRequest.destinationUrl}`
+        })
+      case 'Request-Stream' :
+        return socket.requestStream({
+          data: socketRequest.payload,
+          metadata: String.fromCharCode(`${socketRequest.destinationUrl}`.length) + `${socketRequest.destinationUrl}`
+        })
+      case 'Channel' :
+        return socket.requestChannel(new Flowable(socketRequest.payload))
+      case 'Fire-and-Forget':
+        return socket.fireAndForget({
+          data: socketRequest.payload,
+          metadata: String.fromCharCode(`${socketRequest.destinationUrl}`.length) + `${socketRequest.destinationUrl}`
+        })
+      default :
+        throw new Error('No interaction model provided!')
+    }
   }
 
   async getSocketBase(wsUrl: string): Promise<ReactiveSocket<any, Encodable>> {
