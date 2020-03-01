@@ -60,7 +60,7 @@ export class SocketUIService {
             resolve(socket)
           },
           onError: error => {
-            console.log('error', error)
+            reject(error)
           },
           onSubscribe: cancel => {}
         })

@@ -1,5 +1,5 @@
 import { SocketUIService } from './../../socket-ui/services/socket-ui.service'
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ComponentFactoryResolver } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 @Component({
@@ -72,8 +72,8 @@ export class InputBarComponent implements OnInit {
         this.result.emit(this.elements)
       },
       onError: error => {
-        console.log(error);
-        this.elements.push(error)
+        console.log('error: ', error);
+        this.elements.push( { error })
       },
       onNext: payload => {
         this.elements.push(payload.data)
