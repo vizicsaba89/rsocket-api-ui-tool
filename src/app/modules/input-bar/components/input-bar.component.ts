@@ -64,7 +64,9 @@ export class InputBarComponent implements OnInit {
       payload: undefined, 
       wsBaseUrl: this.form.value.wsBaseUrl
     }).catch(error => {
-      this.result.emit(error)
+      this.elements = []
+      this.elements.push( { error: `${error}` })
+      this.result.emit(this.elements)
     })
 
     response.subscribe({
@@ -73,7 +75,9 @@ export class InputBarComponent implements OnInit {
       },
       onError: error => {
         console.log('error: ', error);
-        this.elements.push( { error })
+        this.elements = []
+        this.elements.push( { error: `${error}` })
+        this.result.emit(this.elements)
       },
       onNext: payload => {
         this.elements.push(payload.data)
