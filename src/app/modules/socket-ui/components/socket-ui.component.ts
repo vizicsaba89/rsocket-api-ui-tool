@@ -1,5 +1,6 @@
 import { SocketUIService } from './../services/socket-ui.service'
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor'
 
 @Component({
   selector: 'socket-ui',
@@ -8,19 +9,12 @@ import { Component, OnInit } from '@angular/core';
 
     <div class="row">
       <div class="col s6">
-        <label for="payload" class="white-text">Payload</label>
-        <ngs-code-editor
-          id="payload" 
-          [theme]="theme"
-          [codeModel]="payloadModel"
-          [options]="options"
-          style="height: 500px;"
-          (valueChanged)="onCodeChanged($event)"
-        >
-        </ngs-code-editor>
+        <label for="payload" class="white-text">Message</label>
+        <json-editor id="payload" [options]="editorOptions" [data]="payload"></json-editor>
       </div>
       <label for="result" class="white-text">Result</label>
-      <div id="result" class="col s6 grey darken-4" style="height: 500px; overflow-y: scroll;">
+  
+      <div id="result" class="col s6 grey darken-4" style="height: 800px; overflow-y: scroll;">
         <pre class="white-text" style="font-size: 10px;">{{ result | json }}</pre>
       </div>
     </div>
@@ -31,35 +25,24 @@ export class SocketUIComponent implements OnInit {
 
   result: any = undefined
 
-  theme = 'vs-dark'
+  public editorOptions: JsonEditorOptions
 
-  payloadModel = {
-    language: 'json',
-    value: '{}'
+  @ViewChild(JsonEditorComponent, { static: true })
+  editor: JsonEditorComponent
+
+  payload: any
+
+  constructor(private socketUIService: SocketUIService) {
+    this.editorOptions = new JsonEditorOptions()
+    this.editorOptions.modes = ['code', 'text', 'tree', 'view']
+    this.editorOptions.mode = 'code'
+    this.editorOptions.mainMenuBar = false
+    this.editorOptions.theme = 0
   }
-
-  resultModel = {
-    language: 'json',
-    value: this.result
-  }
-
-  options = {
-    contextmenu: false,
-    fontSize: 10,
-    minimap: {
-      enabled: true
-    }
-  }
-
-  constructor(private socketUIService: SocketUIService) {}
 
   async ngOnInit(): Promise<void> {
   }
-
-  onCodeChanged(value) {
-    console.log('CODE', value)
-  }
-
+  
   handleChange(event) {
     this.result = event
   }

@@ -10,7 +10,7 @@ function initWindow() {
     height: 800,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
   })
 
   appWindow.loadURL(
@@ -20,8 +20,6 @@ function initWindow() {
       slashes: true
     })
   );
-
-  appWindow.webContents.openDevTools()
 
   appWindow.on('closed', function () {
     appWindow = null
@@ -39,7 +37,7 @@ app.on('window-all-closed', function () {
 })
 
 app.on('activate', function () {
-  if (win === null) {
+  if (appWindow === null) {
     initWindow()
   }
 })

@@ -25,7 +25,8 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "assets/monaco-editor/" }
             ],
             "styles": [
               "src/styles.scss"
@@ -90,14 +91,12 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              { "glob": "**/asd*", "input": "../node_modules/ngx-monaco-editor/assets/monaco", "output": "./assets/monaco/" }
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": [
-              "../node_modules/ace-builds/src-min/theme-vs-dark.js"
             ]
           }
         },
