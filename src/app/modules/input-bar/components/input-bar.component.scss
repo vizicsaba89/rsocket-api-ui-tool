@@ -1,0 +1,13 @@
+.row {
+  background: rgb(17,17,17);
+  background: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(88,86,86,1) 100%, rgba(99,99,99,1) 100%);
+  box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
+}
+
+.select-wrapper .select-dropdown {
+  color: white!important;
+}
+
+::ng-deep .row .ng-untouched .input-field .select-wrapper .select-dropdown {
+  color: white!important;
+}

@@ -1,5 +1,5 @@
 import { SocketUIService } from './../../socket-ui/services/socket-ui.service'
-import { Component, OnInit, Output, EventEmitter, Input, ComponentFactoryResolver } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 @Component({
@@ -7,6 +7,9 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   template: `
     <div style="margin: 10px;" class="row card-panel grey darken-4 z-depth-1">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="col s1">
+          <img src="assets/rsocket.png" alt="" class="circle responsive-img">
+        </div>
         <div class="input-field col s2">
           <select formControlName="interactionModel">
             <option value="" disabled selected>Choose interaction model</option>
@@ -17,23 +20,23 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
           </select>
           <label>Interaction Models</label>
         </div>
-        <div class="input-field col s4">
-          <input formControlName="wsBaseUrl" placeholder="" type="text" class="validate white-text">
+        <div class="input-field col s3">
+          <input formControlName="wsBaseUrl" placeholder="" type="text" class="white-text">
           <label for="wsBaseUrl">Websocket URL</label>
         </div>
         <div class="input-field col s5">
-          <input formControlName="destinationUrl" placeholder="" type="text" class="validate white-text">
+          <input formControlName="destinationUrl" placeholder="" type="text" class="white-text">
           <label for="destinationUrl">Destination</label>
         </div>
         <div class="input-field col s1">
-          <button type=submit class="waves-effect waves-light btn">send</button>
+          <button type=submit class="waves-effect pink accent-4 btn" style="margin: 10px;">send</button>
         </div>
       </form>
     </div>
   `,
   styleUrls: ['./input-bar.component.scss']
 })
-export class InputBarComponent implements OnInit {
+export class InputBarComponent {
 
   form: FormGroup
 
@@ -52,9 +55,6 @@ export class InputBarComponent implements OnInit {
       "destinationUrl": this.destinationUrl,
       "interactionModel": this.interactionModel,
     })
-  }
-
-  async ngOnInit(): Promise<void> {
   }
 
   async onSubmit() {

@@ -14,8 +14,8 @@ import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor'
       </div>
       <label for="result" class="white-text">Result</label>
   
-      <div id="result" class="col s6 grey darken-4" style="height: 800px; overflow-y: scroll;">
-        <pre class="white-text" style="font-size: 10px;">{{ result | json }}</pre>
+      <div id="result" class="col s6 result" style="height: 700px; overflow-y: scroll;">
+        <pre class="white-text" style="font-size: 14px;">{{ result | json }}</pre>
       </div>
     </div>
   `,
@@ -37,7 +37,7 @@ export class SocketUIComponent implements OnInit {
     this.editorOptions.modes = ['code', 'text', 'tree', 'view']
     this.editorOptions.mode = 'code'
     this.editorOptions.mainMenuBar = false
-    this.editorOptions.theme = 0
+    this.editorOptions.statusBar = false
   }
 
   async ngOnInit(): Promise<void> {
