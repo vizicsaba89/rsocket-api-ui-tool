@@ -1,5 +1,5 @@
 import { SocketUIService } from './../../socket-ui/services/socket-ui.service'
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 @Component({
@@ -47,6 +47,9 @@ export class InputBarComponent {
   @Output()
   result = new EventEmitter()
 
+  @Input()
+  payload: any = undefined
+
   elements: any[] = []
 
   constructor(private fb: FormBuilder, private socketUIService: SocketUIService) {
@@ -61,7 +64,7 @@ export class InputBarComponent {
     const response = await this.socketUIService.getSocketResponse({
       destinationUrl: this.form.value.destinationUrl,
       interactionModel: this.form.value.interactionModel,
-      payload: undefined, 
+      payload: this.payload, 
       wsBaseUrl: this.form.value.wsBaseUrl
     }).catch(error => {
       this.elements = []

@@ -5,12 +5,12 @@ import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor'
 @Component({
   selector: 'socket-ui',
   template: `
-    <input-bar (result)="handleChange($event)"></input-bar>
+    <input-bar (result)="handleChange($event)" [payload]="payload"></input-bar>
 
     <div class="row">
       <div class="col s6">
         <label for="payload" class="white-text">Message</label>
-        <json-editor id="payload" [options]="editorOptions" [data]="payload"></json-editor>
+        <json-editor id="payload" [options]="editorOptions" [data]="payload" [(ngModel)]="payload"></json-editor>
       </div>
       <label for="result" class="white-text">Result</label>
   
@@ -30,7 +30,7 @@ export class SocketUIComponent implements OnInit {
   @ViewChild(JsonEditorComponent, { static: true })
   editor: JsonEditorComponent
 
-  payload: any
+  payload: any = undefined
 
   constructor(private socketUIService: SocketUIService) {
     this.editorOptions = new JsonEditorOptions()

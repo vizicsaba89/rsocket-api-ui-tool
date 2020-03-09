@@ -11,3 +11,7 @@
 ::ng-deep .row .ng-untouched .input-field .select-wrapper .select-dropdown {
   color: white!important;
 }
+
+::ng-deep .row .ng-touched .input-field .select-wrapper .select-dropdown {
+  color: white!important;
+}

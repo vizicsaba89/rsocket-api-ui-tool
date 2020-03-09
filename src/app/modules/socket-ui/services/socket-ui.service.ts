@@ -20,6 +20,7 @@ export class SocketUIService {
           metadata: String.fromCharCode(`${socketRequest.destinationUrl}`.length) + `${socketRequest.destinationUrl}`
         })
       case 'Request-Stream' :
+        console.log(socketRequest.payload)
         return socket.requestStream({
           data: socketRequest.payload,
           metadata: String.fromCharCode(`${socketRequest.destinationUrl}`.length) + `${socketRequest.destinationUrl}`
