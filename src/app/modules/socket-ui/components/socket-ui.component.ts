@@ -5,17 +5,18 @@ import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor'
 @Component({
   selector: 'socket-ui',
   template: `
-    <input-bar (result)="handleChange($event)" [payload]="payload"></input-bar>
+    <input-bar (result)="handleSubmit($event)" [payload]="finalPayload"></input-bar>
 
     <div class="row">
       <div class="col s6">
         <label for="payload" class="white-text">Message</label>
-        <json-editor id="payload" [options]="editorOptions" [data]="payload" [(ngModel)]="payload"></json-editor>
+        <json-editor id="payload" [options]="editorOptions" [data]="payload" [(ngModel)]="finalPayload"></json-editor>
       </div>
       <label for="result" class="white-text">Result</label>
   
-      <div id="result" class="col s6 result" style="height: 700px; overflow-y: scroll;">
-        <pre class="white-text" style="font-size: 14px;">{{ result | json }}</pre>
+      <div class="col s6" style="height: 700px;">
+        <json-editor id="result" [options]="editorOptions" [data]="result"></json-editor>
+        <!--<pre class="white-text" style="font-size: 14px;">{{ result | json }}</pre>-->
       </div>
     </div>
   `,
@@ -30,7 +31,8 @@ export class SocketUIComponent implements OnInit {
   @ViewChild(JsonEditorComponent, { static: true })
   editor: JsonEditorComponent
 
-  payload: any = undefined
+  payload: any = {}
+  finalPayload: any = {}
 
   constructor(private socketUIService: SocketUIService) {
     this.editorOptions = new JsonEditorOptions()
@@ -42,8 +44,8 @@ export class SocketUIComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
   }
-  
-  handleChange(event) {
+
+  handleSubmit(event) {
     this.result = event
   }
 
