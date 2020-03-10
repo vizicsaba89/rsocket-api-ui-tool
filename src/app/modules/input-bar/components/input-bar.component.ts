@@ -41,7 +41,7 @@ export class InputBarComponent {
   form: FormGroup
 
   wsBaseUrl = new FormControl("ws://localhost/rsocket", Validators.required)
-  destinationUrl=  new FormControl("", Validators.required)
+  destinationUrl=  new FormControl("working.time.abc-1234.2020-01-31T23:59:59.2020-02-31T23:59:59", Validators.required)
   interactionModel =  new FormControl("", Validators.required)
 
   @Output()

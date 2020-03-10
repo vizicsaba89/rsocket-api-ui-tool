@@ -12,11 +12,10 @@ import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor'
         <label for="payload" class="white-text">Message</label>
         <json-editor id="payload" [options]="editorOptions" [data]="payload" [(ngModel)]="finalPayload"></json-editor>
       </div>
-      <label for="result" class="white-text">Result</label>
   
       <div class="col s6" style="height: 700px;">
+        <label for="result" class="white-text">Result</label>
         <json-editor id="result" [options]="editorOptions" [data]="result"></json-editor>
-        <!--<pre class="white-text" style="font-size: 14px;">{{ result | json }}</pre>-->
       </div>
     </div>
   `,
