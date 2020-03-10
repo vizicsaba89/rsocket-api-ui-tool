@@ -1,4 +1,4 @@
-# RsocketClient
+# Rsocket Api UI Tool
 
 A UI tool for testing rsocket apis.
 
