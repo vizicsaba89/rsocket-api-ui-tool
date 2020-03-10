@@ -15,7 +15,7 @@ function initWindow() {
 
   appWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, `/dist/spring-rsocket-client/index.html`),
+      pathname: path.join(__dirname, `/dist/spring-api-ui-tool/index.html`),
       protocol: "file:",
       slashes: true
     })

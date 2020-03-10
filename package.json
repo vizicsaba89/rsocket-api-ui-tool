@@ -1,7 +1,9 @@
 {
-  "name": "spring-rsocket-client",
-  "version": "1.0.0",
+  "name": "spring-api-ui-tool",
+  "version": "0.0.1",
   "main": "app.js",
+  "author": "Csaba Vizi",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

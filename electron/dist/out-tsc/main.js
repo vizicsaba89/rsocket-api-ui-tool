@@ -9,7 +9,7 @@ let win;
 function createWindow() {
     win = new electron_1.BrowserWindow({ width: 800, height: 600 });
     win.loadURL(url.format({
-        pathname: path.join(__dirname, `/../../dist/spring-rsocket-client/index.html`),
+        pathname: path.join(__dirname, `/../../dist/spring-api-ui-tool/index.html`),
         protocol: "file:",
         slashes: true
     }));

@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'spring-rsocket-client'`, () => {
+  it(`should have as title 'spring-api-ui-tool'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('spring-rsocket-client');
+    expect(app.title).toEqual('spring-api-ui-tool');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('spring-rsocket-client app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('spring-api-ui-tool app is running!');
   });
 });
