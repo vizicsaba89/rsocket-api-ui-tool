@@ -61,36 +61,42 @@ export class InputBarComponent {
   }
 
   async onSubmit() {
-    console.log('payload', this.payload)
+    this.elements = []
+
     const response = await this.socketUIService.getSocketResponse({
       destinationUrl: this.form.value.destinationUrl,
       interactionModel: this.form.value.interactionModel,
       payload: this.payload, 
       wsBaseUrl: this.form.value.wsBaseUrl
     }).catch(error => {
-      this.elements = []
       this.elements.push( { error: `${error}` })
       this.result.emit(this.elements)
     })
 
-    response.subscribe({
-      onComplete: () => {
-        this.result.emit(this.elements)
-      },
-      onError: error => {
-        console.log('error: ', error);
-        this.elements = []
-        this.elements.push( { error: `${error}` })
-        this.result.emit(this.elements)
-      },
-      onNext: payload => {
-        this.elements.push(payload.data)
-      },
-      onSubscribe: subscription => {
-        this.elements = []
-        subscription.request(2147483647);
-      },
-    })
+    if (this.form.value.interactionModel === 'Request-Response') {
+      console.log(response.data)
+      this.elements.push(response.data)
+      this.result.emit(this.elements)
+    } else {
+      response.subscribe({
+        onComplete: () => {
+          this.result.emit(this.elements)
+        },
+        onError: error => {
+          console.log('error: ', error);
+          this.elements = []
+          this.elements.push( { error: `${error}` })
+          this.result.emit(this.elements)
+        },
+        onNext: payload => {
+          this.elements.push(payload.data)
+        },
+        onSubscribe: subscription => {
+          this.elements = []
+          subscription.request(2147483647);
+        },
+      })
+    }
   }
 
 }
