@@ -24,7 +24,7 @@
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
     "ang-jsoneditor": "^1.9.1",
-    "electron": "^8.0.2",
+    "electron": "^9.4.0",
     "jsoneditor": "^8.6.1",
     "rsocket-core": "^0.0.10",
     "rsocket-flowable": "^0.0.10",
