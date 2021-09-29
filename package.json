@@ -25,7 +25,7 @@
     "@angular/router": "~8.2.4",
     "ang-jsoneditor": "^1.9.1",
     "electron": "^8.0.2",
-    "jsoneditor": "^8.6.1",
+    "jsoneditor": "^9.5.6",
     "rsocket-core": "^0.0.10",
     "rsocket-flowable": "^0.0.10",
     "rsocket-tcp-server": "^0.0.10",
